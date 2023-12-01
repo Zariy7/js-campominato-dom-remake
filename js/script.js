@@ -5,21 +5,21 @@ genBtn.addEventListener('click', gridGen);
 function gridGen(){
     let diffString = document.getElementById('Difficulty').value;
     let diffValue;
-    let dangerSquares;
+    let dangerSquares; //MAKES DIFFICULTY MORE MODULAR
 
     //SECOND BONUS
     switch (diffString){
         case 'Easy':
             diffValue = 10;
-            dangerSquares = 1;
+            dangerSquares = 16;
             break;
         case 'Medium':
             diffValue = 9;
-            dangerSquares = 1;
+            dangerSquares = 16;
             break;
         case 'Hard':
             diffValue = 7;
-            dangerSquares = 1;
+            dangerSquares = 16;
             break;
         default:
             break;
@@ -36,7 +36,7 @@ function gridGen(){
     grid.innerHTML = ``;
     score.innerText = ``;
     bombsArray = bombGen(totalSquares, dangerSquares);
-    console.log(bombsArray);
+    //console.log(bombsArray);
 
 
     for(let i = 0; i<totalSquares; i++){
