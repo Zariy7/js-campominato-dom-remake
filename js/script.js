@@ -45,7 +45,7 @@ function gridGen(){
         newSquare.style.width = `calc(1000px / ${diffValue} - 10px)`;
         newSquare.style.height = newSquare.style.width;
         
-        newSquare.classList.add("basic", "everything-center", "m-1");
+        newSquare.classList.add("basic", "everything-center", "m-1", "game-square");
         newSquare.innerText = `${i+1}`;
         grid.appendChild(newSquare);
 
@@ -54,16 +54,15 @@ function gridGen(){
             if(!gameOver){
                 if(bombsArray.includes(i+1)){
                     //EVENTS ON CLICKING A BOMB TILE.
-                    gameOver = true;
-
-                    let squareList = document.getElementsByClassName("everything-center");
+                    let squareList = document.getElementsByClassName("game-square");
                     for(let j = 0; j<totalSquares; j++){
                         if(bombsArray.includes(j+1)){
                             squareList[j].classList.toggle("danger");
                             squareList[j].classList.toggle("basic");
                         }
                     }
-
+                    
+                    gameOver = true;
                     score.innerText = `You lose!`;
                 }
                 else{
@@ -73,15 +72,15 @@ function gridGen(){
                         //EVENTS ON CLICKING A SAFE TILE.
                         this.classList.toggle("safe");
                         this.classList.toggle("basic");
+                        safeClicks.push(i+1);
+                        
                         scoreCount++;
-    
                         score.innerText = `Your score is: ${scoreCount}`;
     
                         if(scoreCount == (totalSquares - dangerSquares)){
                             gameOver = true;
                             score.innerText = `You win!`;
                         }
-                        safeClicks.push(i+1);
                     }
                 }
             }
